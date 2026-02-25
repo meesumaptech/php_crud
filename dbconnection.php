@@ -7,7 +7,5 @@
         /* echo "Connected"; */
         return $con;
     }
-
-    
     
 ?>

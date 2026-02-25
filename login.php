@@ -28,7 +28,7 @@
         <!-- <button type="submit"></button> -->
     </form>
 
-    <a href="Signup.php">Login Page</a>
+    <a href="Signup.php">Signup Page</a>
 </body>
 </html>
 

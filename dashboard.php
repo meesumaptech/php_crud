@@ -1,5 +1,8 @@
 <?php
+include("dbconnection.php");
 session_start();
+
+
 
 if(isset($_SESSION['username'])=="")
 {
@@ -19,6 +22,36 @@ if(isset($_SESSION['username'])=="")
     <!-- <form action="" method="post">
         <input type="submit" name="btnlogout" value="Logout">
     </form> -->
+
+    <table border="1" width="50%" style="border-collapse:collapse">
+        <tr>
+            <th>S.No</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Age</th>
+            <th>Phone</th>
+            <th>Description</th>
+        </tr>
+        <?php
+            $query = "select * from users";
+            $result = mysqli_query($con,$query); /* Answer is in true or false */
+            $data = mysqli_fetch_all($result,MYSQLI_NUM);
+            $sno = 1;
+            foreach($data as $row) //row is loop variable
+            {
+                echo "
+                    <tr>
+                        <td>".$sno++."</td>
+                        <td>".$row[1]."</td>
+                        <td>".$row[2]."</td>
+                        <td>".$row[3]."</td>
+                        <td>".$row[4]."</td>
+                        <td>".$row[5]."</td>
+                    </tr>
+                ";
+            }
+        ?>
+    </table>
 
     <a href="logout.php">Logout</a>
 </body>
