@@ -31,28 +31,43 @@ if(isset($_SESSION['username'])=="")
             <th>Age</th>
             <th>Phone</th>
             <th>Description</th>
+            <th>Action</th>
         </tr>
         <?php
             $query = "select * from users";
             $result = mysqli_query($con,$query); /* Answer is in true or false */
-            $data = mysqli_fetch_all($result,MYSQLI_NUM);
+            $sno = 1;
+            while($row = mysqli_fetch_assoc($result))
+            {
+                echo "
+                    <tr>
+                        <td>".$sno++."</td>
+                        <td>".$row['username']."</td>
+                        <td>".$row['email']."</td>
+                        <td>".$row['age']."</td>
+                        <td>".$row['phone']."</td>
+                        <td>".$row['description']."</td>
+                        <td><a href='update.php?id=".$row['id']."'>Update</a> | <a href='delete.php?id=".$row['id']."''>Delete</a></td>
+                    </tr>
+                ";
+            }
+            /* $data = mysqli_fetch_all($result,MYSQLI_ASSOC);
             $sno = 1;
             foreach($data as $row) //row is loop variable
             {
                 echo "
                     <tr>
                         <td>".$sno++."</td>
-                        <td>".$row[1]."</td>
-                        <td>".$row[2]."</td>
-                        <td>".$row[3]."</td>
-                        <td>".$row[4]."</td>
-                        <td>".$row[5]."</td>
+                        <td>".$row['username']."</td>
+                        <td>".$row['email']."</td>
+                        <td>".$row['age']."</td>
+                        <td>".$row['phone']."</td>
+                        <td>".$row['description']."</td>
                     </tr>
                 ";
-            }
+            } */
         ?>
     </table>
-
     <a href="logout.php">Logout</a>
 </body>
 </html>
